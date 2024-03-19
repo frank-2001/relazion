@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RELAZION-Home</title>
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    </head>
+    <style>
+        body{
+            display: grid;
+            grid-template-rows: 30vh 30vh 40vh;
+            overflow: hidden;
+            background: var(--primary);
+            color: var(--secondary);
+        } 
+        .images{
+            display: flex;
+            align-items: center;
+            gap: 0;
+            border-radius: 10px 10px 0 0;
+        }
+        .images>div{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+            background: url('static/images/couple.jpg');
+        }
+        .images>div:hover{
+            margin-top: 5%;
+        }
+        h1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1350%;
+            font-weight: lighter;
+            animation: h1 alternate-reverse;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            font-weight: bolder;
+            /* animation: ; */
+        }
+        .infos{
+            display: grid;
+            grid-template-columns: 55% 30%;
+            padding:0 7.5%;
+            align-items: center;
+            justify-content: center;
+            gap: 0%;
+        }
+        p{
+            font-style: italic;
+            font-size: 120%;
+        }
+        @keyframes h1 {
+            from {font-size: 1350%;}
+            to {font-size: 1320%;}
+        }
+    </style>
+    <body>
+        <h1>RELAZION</h1>
+        <div class="infos">
+            <p style="text-align: left;">
+                Relazion : Là où les cœurs se rencontrent et les amitiés s’épanouissent ! Notre plateforme en ligne, Relazion, est bien plus qu’un simple site de rencontres amoureuses. C’est un espace chaleureux où les âmes se connectent, que ce soit pour trouver l’amour ou cultiver des liens d’amitié authentiques.
+            </p>
+            <div style="display: flex;align-items: center;justify-content: right;">
+                <a href="{% url 'login'%}" class="btn white" style="padding: 10px 50px;align-items: center;justify-content: center;">Login</a>
+            </div>
+        </div>
+        <div class="images">
+            <div style="background: url('static/images/couple.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover;"></div>
+            <div style="background: url('static/images/couple4.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover"></div>
+            <div style="background: url('static/images/couple2.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover"></div>
+            <div style="background: url('static/images/couple3.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover"></div>
+        </div>
+        
+    </body>
+</html>
