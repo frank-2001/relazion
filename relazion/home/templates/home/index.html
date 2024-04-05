@@ -68,7 +68,13 @@
                 Relazion : Là où les cœurs se rencontrent et les amitiés s’épanouissent ! Notre plateforme en ligne, Relazion, est bien plus qu’un simple site de rencontres amoureuses. C’est un espace chaleureux où les âmes se connectent, que ce soit pour trouver l’amour ou cultiver des liens d’amitié authentiques.
             </p>
             <div style="display: flex;align-items: center;justify-content: right;">
-                <a href="{% url 'login'%}" class="btn white" style="padding: 10px 50px;align-items: center;justify-content: center;">Login</a>
+                <a href="{% url 'login'%}" class="btn white" style="padding: 10px 50px;align-items: center;justify-content: center;">
+                {% if request.session.id == '' %}
+                    Login
+                {% else %}
+                    Profil
+                {% endif %}
+                </a>
             </div>
         </div>
         <div class="images">

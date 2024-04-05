@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from home import views as _home 
 from login import views as _login
+from users import views as _users
 from django.conf import settings # NEW
 from django.conf.urls.static import static
 from base import views as _base
@@ -25,5 +26,12 @@ from base import views as _base
 urlpatterns = [
     path('',_home.index,name=""),
     path('login/',_login.index,name="login"),
-    path('admin/', admin.site.urls)
+    path('login/login',_login.login,name="login/login"),
+    path('registration/',_login.registration,name="registration"),
+    path('registration/new',_login.new,name="registration/new"),
+    path('admin/', admin.site.urls),
+    path('users/', _users.index,name="users"),
+    path('user/', _users.user,name="user"),
+    path('profil/', _users.profil,name="profil"),
+    path('deconnexion/', _users.deconnexion,name="deconnexion")
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

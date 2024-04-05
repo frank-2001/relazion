@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELAZION - Registration</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
+    <style>
+    </style>
+</head>
+<body class="center">
+    
+    <p style="text-align: center;">
+        {{message}}
+    </p>
+    <div class="card white">
+        <div style="display: flex;align-items: center;justify-content: space-between;">
+            <h3 style="">REGISTRATION</h3>
+            <a class="primary btn" href="{% url '' %}">
+                &cross;
+            </a>
+        </div>
+        
+        <!-- <a class="btn" href="{% url '' %}">Home</a> -->
+        <form action="{% url 'registration/new' %}" method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <span>Names</span>
+                <input type="text" required name="names">
+            </fieldset>
+            <fieldset>
+                <span>Sex</span>
+                <select name="sex" id="">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <span>Birthday</span>
+                <input type="date" name="birth">
+            </fieldset>
+            <fieldset>
+                <span>Skin color</span>
+                <input type="color" name="color">
+            </fieldset>
+            <fieldset>
+                <span>Height</span>
+                <input type="number" required name="height"  step="0.1">
+            </fieldset>
+            <fieldset>
+                <span>Password</span>
+                <input required type="password" name="password">
+            </fieldset>
+            <div style="display: grid;justify-content: center;align-items: center;margin-top: 20px;">
+                <button>Valider</button>
+                <a href="{% url 'login'%}" style="text-align: center;margin-top: 20px;" class="">Connexion</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

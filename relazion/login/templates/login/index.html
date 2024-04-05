@@ -6,12 +6,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RELAZION - Login</title>
+    <title>RELAZION - Registration</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
     <style>
     </style>
 </head>
 <body class="center">
+    <p style="text-align: center;position: sticky;">
+        {{message}}
+    </p>
+   
     <div class="card white">
         <div style="display: flex;align-items: center;justify-content: space-between;">
             <h3 style="">LOGIN</h3>
@@ -20,22 +24,23 @@
             </a>
         </div>
         <!-- <a class="btn" href="{% url '' %}">Home</a> -->
-        <form action="">
+        <form action="{% url 'login/login' %}" method="POST">
+            {% csrf_token %}
             <fieldset>
-                <span>User name</span>
-                <input type="text">
+                <span>ID</span>
+                <input name="id" type="number">
             </fieldset>
             <fieldset>
-                <span>User name</span>
-                <input type="text">
+                <span>Password</span>
+                <input type="password" name="password">
             </fieldset>
             <div style="display: grid;justify-content: center;align-items: center;margin-top: 20px;">
                 <button>Valider</button>
-                <a href="" style="text-align: center;margin-top: 20px;" class="">nouveau compte</a>
-
+                <a href="{% url 'registration' %}" style="text-align: center;margin-top: 20px;" class="">nouveau compte</a>
             </div>
         </form>
     </div>
-    
 </body>
 </html>
+
+
