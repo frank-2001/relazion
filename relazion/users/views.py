@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-
+from django.http import HttpResponse,HttpRequest
 from users.models import *
 
 # Create your views here.
@@ -11,10 +11,10 @@ def index(request):
     }
     return render(request, 'users/index.html', data)
 def profil(request):
-    if request.session['id']!="":
+    # return HttpResponse(request.session["id"])
+    if request.session.get('id',None)!="":
         users_db=Users.objects.all()
         users_db=users_db.filter(id=request.session['id']).last()
-    
         data={
             'user':users_db
         }
@@ -25,7 +25,7 @@ def user(request):
 
     # if request.session['id']!="":
     users_db=Users.objects.all()
-    users_db=users_db.filter(id=request.GET['id']).last()
+    users_db=users_db.filter(id=request.session.get('id')).last()
     if users_db:
         data={
             'user':users_db
@@ -34,5 +34,5 @@ def user(request):
     else:
         return redirect('users')
 def deconnexion(request):
-    request.session['id']=""
+    request.session["id"]=""
     return redirect('login')

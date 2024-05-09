@@ -83,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'relazion',
-        'USER' : 'frank',
+        'USER' : 'root',
         'PASSWORD': DATABASE_PASSWORD,
         'HOST' : 'localhost',
         'PORT' : '3306'
