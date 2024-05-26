@@ -23,7 +23,7 @@ def login(request):
             u=Users.objects.filter(id=form.data.get('id'),password=form.data.get('password'))
             if(u):
                 # print(u.id)
-                request.session['id']=form.data.get('id')
+                request.session['id']=int(form.data.get('id'))
                 return redirect('profil')
             else:
                 # return HttpResponse(request.POST)
