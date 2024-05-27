@@ -22,7 +22,9 @@
         .user{
             display: flex;
             align-items: center;
-            
+            gap: 10px;
+            border-radius: 10px;
+            padding: 10px;
         }
         .user>div{
             display: grid;
@@ -33,29 +35,44 @@
         }
     </style>
     <body>
-        <div class="flex" style="display: flex;justify-content: space-between;align-items: center;">
+        <div style="display: grid;gap: 5px;min-width: 50vw;">
+            <div class="flex" style="display: flex;justify-content: space-between;align-items: center;">
             
-            <h2>LIST USERS</h2>
-            <div>
-                <a href="{% url 'profil' %}" class="btn black">Profil</a>
-                <a href="{% url '' %}" class="btn black">Home</a>
+                <h2>LIST USERS</h2>
+                <div>
+                    <a href="{% url 'profil' %}" class="btn black">Profil</a>
+                    <a href="{% url '' %}" class="btn black">Home</a>
+                </div>
+                
             </div>
-            
+            <form action="{% url 'user_search' %}"  method="get" style="display: flex;background: var(--black);border-radius: 10px;">
+                <!-- {% csrf_token %} -->
+                <input type="text" name="search" placeholder="Recherche " style="width: 85%;">
+               
+                <button>
+                    <svg style="width: 20px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                      </svg>
+                      
+                </button>
+            </form>
+            {% if search %}
+                <i style="text-align: center;">Result for : {{search}}</i>
+            {% endif %}
         </div>
+        
         <div>
             {% for u in users %}
                 {% if u.id != me %}
-                    <div class="user card white">
-                        <svg style="width: 20%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <div class="user white">
+                        <svg style="width: 8%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         </svg> 
                         <div>
-                            <span>{{ u.names }} {{u.id}} {{me}} </span>
+                            <span>{{ u.names }}</span>
                             <span>Birthday: {{ u.birth }}</span>
-                            
                             <a href="{% url 'user' %}?id={{u.id}}" class="btn black">See</a>
                         </div>
-                        
                     </div>
                 {% endif %}
             {% endfor %}

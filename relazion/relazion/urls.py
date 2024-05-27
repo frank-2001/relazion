@@ -34,5 +34,6 @@ urlpatterns = [
     path('user/', _users.user,name="user"),
     path('profil/', _users.profil,name="profil"),
     path('new_message/', _users.new_message,name="new_message"),
+    path('user_search/', _users.user_search,name="user_search"),
     path('deconnexion/', _users.deconnexion,name="deconnexion")
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

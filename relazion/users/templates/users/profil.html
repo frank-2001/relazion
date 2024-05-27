@@ -10,42 +10,78 @@
     <style>
         body{
             display: grid;
+            grid-template-columns: 30% 70%;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            /* padding: 15px; */
         }
-        body>div{
+        body>div.profil{
             display: grid;
             align-items: center;
             justify-content: center;
             text-align: center;
             background: var(--secondary);
             color: var(--black);
-            width: 50vw;
+            width: auto;
         }
+        .users{
+            display: grid;
+            grid-template-columns: 29% 29% 29%;
+            padding: 20px 5%;
+            gap: 1%;
+        }
+        .user{
+            display: grid;
+            background: white;
+            color: grey;
+            padding: 20px;
+            border-radius: 10px;
+            gap: 3px;
+        }
+
     </style>
     <body>
-        <div class="card">
-           <div>
-                <svg style="width: 30%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                </svg> 
-           </div>
-                     
-            <span style="font-weight: 600;">{{user.names}}</span>
-            <span >Skin: <span style='background: {{user.color}};color:color(srgb red green blue)'> {{ user.color }}</span></span>
-            <span>Height: {{ user.height }}m</span>
-            <span>Genre : {{user.sex}}</span>
-            <span>Birthday : {{user.birth}}</span>
-            <hr><hr>
-            <div>
-                <a href="{% url '' %}"  class="btn black">Home page</a>
-                <a href="{% url 'users' %}" class="btn black">Users</a>
-                <a href="{% url 'deconnexion' %}"  style="background:var(--primary)" class="btn">Deconnexion</a>
-             </div>
+        <div  style="display: grid;align-items: center;justify-content: center;">
+            <div class="card"  style=" background: grey;">
+                <div style="display: flex;align-items: center;justify-content: center;">
+                    <svg style="width: 50%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg> 
+               </div>
+                <div style="display: grid;justify-content: center;align-items: center;text-align: center;">
+                    <span style="font-weight: 600;">{{user.names}}</span><br>
+                    <span >Skin: <span style='background: {{user.color}};color:color(srgb red green blue)'> {{ user.color }}</span></span>
+                    <span>Height: {{ user.height }}m</span>
+                    <span>Genre : {{user.sex}}</span>
+                    <span>Birthday : {{user.birth}}</span>
+                </div> 
+            </div>
             <!-- <button>Deconnexion</button> -->
         </div>
-
+        <div style="border-left: solid white 2px;height: 100%">
+            <div style="background: white;; padding: 20px 30px;">
+                <a href="{% url '' %}"  class="btn black">Home page</a>
+                <a href="{% url 'users' %}" class="btn black">All users</a>
+                <a href="{% url 'deconnexion' %}"  style="background:var(--primary)" class="btn">Deconnexion</a>
+             </div>
+             
+             <h2 style="margin-left: 5%;">Suggestion of today</h2>
+             <div class="users">
+                {% for u in users %}
+                    {% if u.id != user.id %}
+                        <div class="user">
+                            <span>{{u.names}}</span>
+                            <span>Height: {{ u.height }}m</span>
+                            <span>Genre : {{u.sex}}</span>
+                            <span>Birthday : {{u.birth}}</span>
+                            <button>Voir</button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+             </div>
+             
+        </div>
         
     </body>
 </html>

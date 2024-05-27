@@ -15,9 +15,12 @@ def profil(request):
     # return HttpResponse(request.session["id"])
     if request.session.get('id',None)!="":
         users_db=Users.objects.all()
+        sug=Users.objects.order_by('?')[:3]
         users_db=users_db.filter(id=request.session.get('id')).last()
+        
         data={
-            'user':users_db
+            'user':users_db,
+            'users':sug
         }
         return render(request, 'users/profil.html', data)
     else:
@@ -48,6 +51,17 @@ def new_message(request):
             return HttpResponse("Form no valid")
     else:
         return HttpResponse(request)
+
+def user_search(request):
+    if (request.method=="GET"):
+        users_db=Users.objects.filter(names__contains=request.GET["search"]).values()
+        # print(users_db)
+        data={
+            'users': users_db,
+            'me': request.session.get('id'),
+            'search':request.GET["search"]
+        }
+        return render(request, 'users/index.html', data)
 def deconnexion(request):
     request.session["id"]=""
     return redirect('login')
